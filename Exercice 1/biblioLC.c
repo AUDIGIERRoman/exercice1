@@ -87,7 +87,7 @@ Biblio* memeauteur(Biblio* b,char* au){
     Biblio* b2= creer_biblio();
     Livre* tmp= b->L;
     while(tmp){
-        if(strcmp(tmp->auteur,au)){
+        if(! strcmp(tmp->auteur,au)){
         inserer_en_tete(b2,tmp->num,tmp->titre,tmp->auteur);
             }
       tmp=tmp->suiv;
@@ -98,13 +98,21 @@ Biblio* memeauteur(Biblio* b,char* au){
 void supprimerouvragebiblio(Biblio* b, int n, char* au, char* ti){
     Livre* tmp = b->L;
     Livre* tmprec = b->L;
+    int test = 1;
     while(tmp){
-        if ((tmp->num==n) &&(strcmp(tmp->auteur,au))&& (strcmp(tmp->titre,ti))){
-            tmprec->suiv = tmp->suiv;
-            liberer_livre(tmp);
+        if ((tmp->num==n) &&(strcmp(tmp->auteur,au)==0)&& (strcmp(tmp->titre,ti)==0)) {
+            if (test) {
+                b->L = tmp->suiv;
+                liberer_livre(tmp);
+            } else {
+                tmprec->suiv = tmp->suiv;
+                liberer_livre(tmp);
+            }
         }
-    tmprec=tmp;
-    tmp=tmp->suiv;
+        test=0;
+        tmprec=tmp;
+        tmp=tmp->suiv;
+
     }
 }
             
@@ -114,10 +122,10 @@ void supprimerouvragebiblio(Biblio* b, int n, char* au, char* ti){
 void fusionbiblio(Biblio* b1,Biblio* b2){
     Livre* tmp = b1->L;
     while(tmp){
-        tmp=tmp->suiv; 
+        tmp=tmp->suiv;
     }
     tmp->suiv=b2->L;
-    //free(b2);
+    free(b2);
        
 }
 Biblio* recherchedoublon(Biblio* b1){
@@ -130,7 +138,7 @@ Biblio* recherchedoublon(Biblio* b1){
         tmp2=tmp;
         tmp=tmp->suiv;
         while(tmp2){
-            if((strcmp(tmp2->auteur,tmp->auteur))&&(strcmp(tmp2->titre,tmp->titre))) {
+            if((strcmp(tmp2->auteur,tmp->auteur)==0)&&(strcmp(tmp2->titre,tmp->titre)==0)) {
                 if (test) {
                     //Livre* cpy = creer_livre(tmp->num,tmp->titre,tmp->auteur);
                     //Livre* cpy2 = creer_livre(tmp2->num,tmp2->titre,tmp2->auteur);

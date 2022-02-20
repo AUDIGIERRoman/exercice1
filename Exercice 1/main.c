@@ -18,10 +18,11 @@ int main(int argc,char** argv){
     livre = recherchelivrepartitre(b,"KMLNOZJKPQPXR");
     afficheLivre(livre);
     Biblio *b2 = memeauteur(b,"tg");
+    printf("\n voici b2 auteur tg\n\n");
     afficheBiblio(b2);
     supprimerouvragebiblio(b2,2,"tg","JYBLD");
     afficheBiblio(b2);
-    printf("\nok\n");
+    printf("\n %d ok\n\n",(int)'a');
     fusionbiblio(b,b2);
     liberer_biblio(b);
     liberer_biblio(b2);
