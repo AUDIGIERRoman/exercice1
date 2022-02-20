@@ -10,16 +10,31 @@ void menu(){
 
 int main(int argc,char** argv) {
     int num = atoi(argv[1]);
-    char *nomfichier;
-    strcpy(nomfichier, argv[3]);
-    int rep;
+    char *nomfichier = strdup(argv[2]);
+    Biblio* b =charger_n_entrees(nomfichier,num);
     char buffer[1];
+    int rep=10000;
     do {
-        menu();
         fgets(buffer,1,stdin);
+        menu();
         buffer[1]='\0';
         rep = atoi(buffer);
         switch (rep) {
+            case 1:
+                printf("Affichage : \n");
+                afficheBiblio(b);
+                break;
+            case 2:
+                printf("");
+                char titre[256];
+                char auteur[256];
+                printf("Veuillez écrire le numéro\n" );
+                char numl[1];
+                fgets(numl, 1, stdin);
+                printf("Veuillez écrire le tire\n");
+                break;
+
+
 
 
         }
