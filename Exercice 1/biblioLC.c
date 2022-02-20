@@ -121,11 +121,11 @@ void supprimerouvragebiblio(Biblio* b, int n, char* au, char* ti){
 
 void fusionbiblio(Biblio* b1,Biblio* b2){
     Livre* tmp = b1->L;
-    while(tmp){
+    while(tmp->suiv){
         tmp=tmp->suiv;
     }
     tmp->suiv=b2->L;
-    free(b2);
+
        
 }
 Biblio* recherchedoublon(Biblio* b1){
