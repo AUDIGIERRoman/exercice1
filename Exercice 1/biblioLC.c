@@ -117,7 +117,7 @@ void fusionbiblio(Biblio* b1,Biblio* b2){
         tmp=tmp->suiv; 
     }
     tmp->suiv=b2->L;
-    free(b2);
+    //free(b2);
        
 }
 Biblio* recherchedoublon(Biblio* b1){
