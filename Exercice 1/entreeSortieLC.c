@@ -26,11 +26,12 @@ Biblio* charger_n_entrees(char* nomfic,int n){
 
 
 void enregistrer_biblio(Biblio* b,char* nomfic){
-    FILE* f=fopen(nomfic,"a");
-    while(b->L){
-        printf("%d %s %s ",b->L->num,b->L->titre,b->L->auteur);
+    FILE* f=fopen(nomfic,"w");
+    Livre *tmp = b->L;
+    while(tmp){
+        fprintf(f,"%d %s %s ",tmp->num,tmp->titre,tmp->auteur);
         fputc('\n',f);
-        b->L=b->L->suiv;
+        tmp=tmp->suiv;
     }
     liberer_biblio(b);
     fclose(f);
