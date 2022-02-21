@@ -17,39 +17,46 @@ int main(int argc,char** argv) {
     char buffer[256];
     do {
         menu();
-        fgets(buffer,2,stdin);
+        fgets(buffer,3,stdin);
         sscanf(buffer,"%d\n",&rep);
         switch (rep) {
-            case 1:
+            case 1: {
                 printf("Affichage : \n");
                 afficheBiblio(b);
                 break;
-            case 2:
+            }
+            case 2: {
                 printf("Insertion de livre\n");
-                strcpy(buffer,"\0");
-                int numero;
+                char buffer2[256];
+                int num2;
                 char titre[256];
                 char auteur[256];
-                printf("Veuillez écrire le numéro , le titre et l'auteur \n" );
-                fgets(buffer, 100, stdin);
-                int test = sscanf(buffer,"%d %s %s\n",&numero,titre,auteur);
-                if (test==3){
-                    Livre *nouv = creer_livre(numero, titre, auteur);
-                    printf("Livre créé :\n ");
+                printf("Veuillez écrire le numéro , le titre et l'auteur \n");
+                fgets(buffer2, 100, stdin);
+                int test = sscanf(buffer2, "%d %s %s\n", &num2, titre, auteur);
+                if (test == 3) {
+                    Livre *nouv = creer_livre(num2, titre, auteur);
+                    printf("Livre créé et inséré :\n ");
                     afficheLivre(nouv);
                     liberer_livre(nouv);
-                    inserer_en_tete(b, numero, titre, auteur);
-                }
-                else{
+                    inserer_en_tete(b, num2, titre, auteur);
+                } else {
                     printf("erreur de format\n");
                 }
                 break;
-
-            case 3:
-                fgets(buffer,10,stdin);
+            }
+            case 3: {
+                printf("Veuillez entrer le numéro de l'oeuvre cherchée\n");
+                fgets(buffer, 10, stdin);
+                int num3;
+                sscanf(buffer,"%d",&num3);
+                afficheLivre( recherchelivreparnum(b,num3));
                 break;
-
-
+            }
+            case 4:{
+                printf("Veuillez entrer le nom de l'auteur")
+                break;
+            }
 
 
         }

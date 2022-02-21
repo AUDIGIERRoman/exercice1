@@ -16,7 +16,7 @@ int fonctionClef(char* auteur){
 
 }
 
-LivreH* creer_livre(int num,char* titre,char* auteur){
+LivreH* creer_livreH(int num,char* titre,char* auteur){
     LivreH* Livre=(LivreH*)malloc(sizeof(LivreH));
     if(Livre==NULL){
         printf("erreur d affectation");
@@ -29,7 +29,7 @@ LivreH* creer_livre(int num,char* titre,char* auteur){
     return Livre;
 }
 
-void liberer_livre(LivreH* l){
+void liberer_livreH(LivreH* l){
     LivreH* tmp = l;
     LivreH* tmpsuiv = NULL;
     while (tmp){
@@ -43,7 +43,7 @@ void liberer_livre(LivreH* l){
 
 }
 
-BiblioH* creer_biblio(int m){
+BiblioH* creer_biblioH(int m){
 
     BiblioH* Biblio=(BiblioH*)malloc(sizeof(BiblioH));
      if(Biblio==NULL){
@@ -57,7 +57,7 @@ BiblioH* creer_biblio(int m){
     return Biblio;
 }
 
-void liberer_biblio(BiblioH* b){
+void liberer_biblioH(BiblioH* b){
     for(int i=0;i<(b->m);i++){
         liberer_livre(*(b->T));
         
