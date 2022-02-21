@@ -5,7 +5,8 @@
 #include"entreeSortieLC.h"
 
 void menu(){
-    printf("0-sortie du programme\n1-Affichage\n2-Insertion d'ouvrage\n");
+    printf("\t0-sortie du programme\n\t1-Affichage\n\t2-Insertion d'ouvrage\n\t"
+           "3-Recherche par numéro\n\t");
 }
 
 int main(int argc,char** argv) {
@@ -13,34 +14,40 @@ int main(int argc,char** argv) {
     char *nomfichier = strdup(argv[2]);
     Biblio* b =charger_n_entrees(nomfichier,num);
     int rep;
-    char*buffer= malloc(256);
+    char buffer[256];
     do {
         menu();
         fgets(buffer,2,stdin);
-        sscanf(buffer,"%d",&rep);
+        sscanf(buffer,"%d\n",&rep);
         switch (rep) {
             case 1:
                 printf("Affichage : \n");
                 afficheBiblio(b);
                 break;
             case 2:
-                printf("");
-                int num;
+                printf("Insertion de livre\n");
+                strcpy(buffer,"\0");
+                int numero;
                 char titre[256];
                 char auteur[256];
-                printf("Veuillez écrire le numéro , le titre et l'auteur \n" );
+                printf("Veuillez écrire le numéro , le titre et l'auteur \n\n" );
                 fgets(buffer, 100, stdin);
-                sscanf(buffer,"%d %s %s",&num,titre,auteur);
-                Livre* nouv = creer_livre(num,titre,auteur);
-                printf("Livre crée :\n ");
-                afficheLivre(nouv);
-                liberer_livre(nouv);
-                inserer_en_tete(b,num,titre,auteur);
+                int test = sscanf(buffer,"%d %s %s\n",&numero,titre,auteur);
+                if (test==3){
+                    Livre *nouv = creer_livre(numero, titre, auteur);
+                    printf("Livre créé :\n ");
+                    afficheLivre(nouv);
+                    liberer_livre(nouv);
+                    inserer_en_tete(b, numero, titre, auteur);
+                }
+                else{
+                    printf("erreur de format\n");
+                }
                 break;
 
             case 3:
-                pr
-
+                fgets(buffer,10,stdin);
+                break;
 
 
 
