@@ -30,7 +30,7 @@ int main(int argc,char** argv) {
                 int numero;
                 char titre[256];
                 char auteur[256];
-                printf("Veuillez écrire le numéro , le titre et l'auteur \n\n" );
+                printf("Veuillez écrire le numéro , le titre et l'auteur \n" );
                 fgets(buffer, 100, stdin);
                 int test = sscanf(buffer,"%d %s %s\n",&numero,titre,auteur);
                 if (test==3){
