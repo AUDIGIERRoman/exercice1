@@ -13,10 +13,10 @@ int main(int argc,char** argv) {
     char *nomfichier = strdup(argv[2]);
     Biblio* b =charger_n_entrees(nomfichier,num);
     int rep;
-    char buffer[256];
+    char*buffer= malloc(256);
     do {
         menu();
-        fgets(buffer,1,stdin);
+        fgets(buffer,2,stdin);
         sscanf(buffer,"%d",&rep);
         switch (rep) {
             case 1:
@@ -28,10 +28,19 @@ int main(int argc,char** argv) {
                 int num;
                 char titre[256];
                 char auteur[256];
-                printf("Veuillez écrire le numéro\n" );
+                printf("Veuillez écrire le numéro , le titre et l'auteur \n" );
                 fgets(buffer, 100, stdin);
-
+                sscanf(buffer,"%d %s %s",&num,titre,auteur);
+                Livre* nouv = creer_livre(num,titre,auteur);
+                printf("Livre crée :\n ");
+                afficheLivre(nouv);
+                liberer_livre(nouv);
+                inserer_en_tete(b,num,titre,auteur);
                 break;
+
+            case 3:
+                pr
+
 
 
 
