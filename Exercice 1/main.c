@@ -12,13 +12,12 @@ int main(int argc,char** argv) {
     int num = atoi(argv[1]);
     char *nomfichier = strdup(argv[2]);
     Biblio* b =charger_n_entrees(nomfichier,num);
-    char buffer[1];
-    int rep=10000;
+    int rep;
+    char buffer[256];
     do {
-        fgets(buffer,1,stdin);
         menu();
-        buffer[1]='\0';
-        rep = atoi(buffer);
+        fgets(buffer,1,stdin);
+        sscanf(buffer,"%d",&rep);
         switch (rep) {
             case 1:
                 printf("Affichage : \n");
@@ -26,12 +25,12 @@ int main(int argc,char** argv) {
                 break;
             case 2:
                 printf("");
+                int num;
                 char titre[256];
                 char auteur[256];
                 printf("Veuillez écrire le numéro\n" );
-                char numl[1];
-                fgets(numl, 1, stdin);
-                printf("Veuillez écrire le tire\n");
+                fgets(buffer, 100, stdin);
+
                 break;
 
 
